@@ -3,7 +3,7 @@
 - [Complete Project](https://react-vite-comfy-store-v2.netlify.app/)
 - [API DOCS](https://documenter.getpostman.com/view/18152321/2s9Xy5KpTi)
 
-## IMPORTANT !!!
+## IMPORTANT !!! #U+1F680
 
 Try to work on one challenge at a time and observe my solution.
 This approach will make it easier later to identify any potential bugs.
