@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as landingLoader } from './pages/Landing';
+import { loader as singleProductLoader } from './pages/SingleProduct';
 import "./App.css";
 import {
   About,
@@ -34,7 +35,8 @@ function App() {
         },
         {
           path:'products/:id',
-          element:<SingleProduct/>
+          element:<SingleProduct/>,
+          loader:singleProductLoader
         },
         {
           path:'cart',
