@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { customFetch, formatPrice } from "../utils";
+import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 import { useState } from "react";
 
 interface Params {
@@ -14,13 +14,12 @@ export const loader = async ({ params }: { params: Params }) => {
 const SingleProduct = () => {
   const { product } = useLoaderData();
   console.log(product);
-  const { image, title, price, description, colors, company } =
-    product.attributes;
+  const { image, title, price, description, colors, company } = product.attributes;
   const dollarsAmount = formatPrice(price);
   const [amount, setAmount] = useState(1);
   const [productColor, setProductColor] = useState(colors[0]);
 
-  const handleAmount = (e) => {
+  const handleAmount = (e:React.ChangeEvent<HTMLSelectElement>) => {
     setAmount(parseInt(e.target.value));
   };
   return (
@@ -76,9 +75,7 @@ const SingleProduct = () => {
               value={amount}
               onChange={handleAmount}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
+             {generateAmountOptions(10)}
             </select>
           </div>
           <div className="mt-10 ">
