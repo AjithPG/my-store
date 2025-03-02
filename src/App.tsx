@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as landingLoader } from './pages/Landing';
-import { loader as singleProductLoader } from './pages/SingleProduct';
+import {loader as singleProductLoader } from './pages/SingleProduct';
+import {loader as ProductsLoader} from './pages/Products';
 import "./App.css";
 import {
   About,
@@ -31,7 +32,8 @@ function App() {
         },
         {
           path:'products',
-          element:<Products/>
+          element:<Products/>,
+          loader:ProductsLoader
         },
         {
           path:'products/:id',
