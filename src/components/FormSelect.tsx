@@ -3,7 +3,7 @@ interface FormSelectProps {
     name:string;
     size:string;
     list:string[];
-    defaultValue?:string
+    defaultValue:string
 }
 const FormSelect = ({label,name,size,defaultValue,list}:FormSelectProps) => {
   return (
