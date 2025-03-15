@@ -2,7 +2,8 @@ import { useState } from "react";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
+import { toggleTheme } from "../features/user/userSlice";
 
 const Links = [
   {
@@ -40,17 +41,13 @@ const Links = [
 const themes = {
     light:'light',
     dark:'dark'
-    
 }
 
 const Navbar = () => {
-  const [theme,setTheme]  = useState<string>(themes.light)
   const numItemsInCart = useSelector((state:any)=>state.cartState.numItemsInCart)
+  const dispatch = useDispatch();
   const handleTheme = ()=>{
-    const {light,dark} = themes;
-    const newTheme = theme === light ? dark : light
-    document.documentElement.setAttribute('data-theme',newTheme)
-    setTheme(newTheme)
+     dispatch(toggleTheme())
   }
   return (
     <nav className="bg-base-200">
@@ -113,3 +110,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+function dispatch(arg0: { payload: undefined; type: "user/toggleTheme"; }) {
+  throw new Error("Function not implemented.");
+}
+
