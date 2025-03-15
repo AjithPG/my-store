@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import { useSelector} from "react-redux";
 
 const Links = [
   {
@@ -44,7 +45,7 @@ const themes = {
 
 const Navbar = () => {
   const [theme,setTheme]  = useState<string>(themes.light)
-
+  const numItemsInCart = useSelector((state:any)=>state.cartState.numItemsInCart)
   const handleTheme = ()=>{
     const {light,dark} = themes;
     const newTheme = theme === light ? dark : light
@@ -101,7 +102,7 @@ const Navbar = () => {
             <div className="indicator">
               <BsCart3 className="w-6 h-6" />
               <span className="badge badge-sm badge-primary indicator-item">
-                2
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>
