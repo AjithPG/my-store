@@ -1,6 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cartSlice";
 
 interface Params {
   id: string;
@@ -16,12 +18,27 @@ const SingleProduct = () => {
   console.log(product);
   const { image, title, price, description, colors, company } = product.attributes;
   const dollarsAmount = formatPrice(price);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState<number>(1);
   const [productColor, setProductColor] = useState(colors[0]);
 
   const handleAmount = (e:React.ChangeEvent<HTMLSelectElement>) => {
     setAmount(parseInt(e.target.value));
   };
+  const dispatch = useDispatch();
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID:product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  }
+
+  const addToCart = ()=>{
+    dispatch(addItem({product:cartProduct}))
+  }
   return (
     <section>
       <div className="text-md breadcrumbs">
@@ -81,7 +98,7 @@ const SingleProduct = () => {
           <div className="mt-10 ">
             <button
               className="btn btn-secondary btn-md"
-              onClick={() => console.log("add to bag")}
+              onClick={() => addToCart()}
             >
               Add to bag
             </button>
