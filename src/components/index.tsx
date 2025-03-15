@@ -7,3 +7,5 @@ export {default as ErrorElement} from './ErrorElement'
 export {default as Filters} from './Filters'
 export {default as ProductsContainer} from './ProductsContainer'
 export {default as PaginationContainer} from './PaginationContainer'
+export {default as CartItemsList} from './CartItemsList';
+export {default as CartTotals} from './CartTotals';
