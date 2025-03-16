@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
@@ -44,7 +43,8 @@ const themes = {
 }
 
 const Navbar = () => {
-  const numItemsInCart = useSelector((state:any)=>state.cartState.numItemsInCart)
+  const numItemsInCart = useSelector((state:any)=>state.cartState.numItemsInCart);
+  const user = useSelector((state:any)=>state.userState.user)
   const dispatch = useDispatch();
   const handleTheme = ()=>{
      dispatch(toggleTheme())
@@ -65,7 +65,8 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
             >
               {Links?.map(({id,url,text}) => {
-                return (
+               if((url==='checkout' || url === 'orders') && !user) return null;
+               return (
                   <li key={id}>
                     <NavLink  to={url}>
                       {text}
@@ -79,6 +80,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal">
           {Links?.map(({id,url,text}) => {
+            if((url==='checkout' || url === 'orders') && !user) return null;
                 return (
                   <li key={id}>
                     <NavLink  to={url}>
