@@ -3,8 +3,8 @@ type FormInputprops = {
     label:string;
     name:string;
     type:string;
-    defaultValue:string;
-    size:string;
+    defaultValue?:string;
+    size?:string;
 }
 
 const FormInput = ({label,name,type,defaultValue,size}:FormInputprops) => {
