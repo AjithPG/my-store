@@ -15,6 +15,11 @@ const themes = {
     dark: 'dark',
 }
 
+const getUserFromLocalStorage = ():userProps| null=>{
+    const storedUser = localStorage.getItem('user');
+    return storedUser? (JSON.parse(storedUser) as userProps) : null;
+};
+
 const getThemeFromLocalStorage = () => {
     const theme =  localStorage.getItem('theme') || themes.light;
     document.documentElement.setAttribute('data-theme', theme);
@@ -22,7 +27,7 @@ const getThemeFromLocalStorage = () => {
   };
 
 const defaultState:userDetailsProp = {
-    user:{username:'Ajith'},
+    user:getUserFromLocalStorage(),
     theme:getThemeFromLocalStorage() 
 }
 
@@ -31,7 +36,9 @@ const userSlice = createSlice({
     initialState:defaultState,
     reducers:{
         loginUser:(state,action)=>{
-          console.log('Login')
+          const user = {...action.payload.user,token:action.payload.jwt}
+          state.user = user;
+          localStorage.setItem('user',JSON.stringify(user))
         },
         logoutUser:(state)=>{
             state.user = null
