@@ -65,7 +65,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
             >
               {Links?.map(({id,url,text}) => {
-               if((url==='checkout' || url === 'orders') && !user) return null;
+              // if((url==='checkout' || url === 'orders') && !user) return null;
                return (
                   <li key={id}>
                     <NavLink  to={url}>
@@ -80,7 +80,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal">
           {Links?.map(({id,url,text}) => {
-            if((url==='checkout' || url === 'orders') && !user) return null;
+           // if((url==='checkout' || url === 'orders') && !user) return null;
                 return (
                   <li key={id}>
                     <NavLink  to={url}>

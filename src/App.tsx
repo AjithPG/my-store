@@ -1,9 +1,11 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { loader as landingLoader } from './pages/Landing';
-import {loader as singleProductLoader } from './pages/SingleProduct';
+import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import {loader as landingLoader} from './pages/Landing';
+import {loader as singleProductLoader} from './pages/SingleProduct';
 import {loader as ProductsLoader} from './pages/Products';
+import {loader as checkoutLoader} from './pages/Checkout';
 import {action as RegisterAction} from './pages/Register';
 import {action as  loginAction} from './pages/Login';
+import {action as  checkoutAction} from './components/CheckoutForm';
 import "./App.css";
 import {
   About,
@@ -53,7 +55,9 @@ function App() {
         },
         {
           path:'checkout',
-          element:<Checkout/>
+          element:<Checkout/>,
+          loader:checkoutLoader(store),
+          action:checkoutAction(store)
         },
         {
           path:'orders',
