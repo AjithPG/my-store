@@ -3,9 +3,11 @@ import {loader as landingLoader} from './pages/Landing';
 import {loader as singleProductLoader} from './pages/SingleProduct';
 import {loader as ProductsLoader} from './pages/Products';
 import {loader as checkoutLoader} from './pages/Checkout';
+import {loader as OrderLoader} from './pages/Orders';
 import {action as RegisterAction} from './pages/Register';
 import {action as  loginAction} from './pages/Login';
 import {action as  checkoutAction} from './components/CheckoutForm';
+
 import "./App.css";
 import {
   About,
@@ -61,7 +63,8 @@ function App() {
         },
         {
           path:'orders',
-          element:<Orders/>
+          element:<Orders/>,
+          loader:OrderLoader(store)
         }
       ],
     },
